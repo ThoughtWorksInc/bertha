@@ -10,11 +10,11 @@
 
 <script type="text/template" class="popup-template">
 
-	<h3><%= organization %></h3><hr/>
+	<h3><%= organization %>: <%= location %></h3><hr/>
 	<img src='placeholder_picture.JPG' style='height: 100px'>
 	<div>About: <%= description %></div>
 	<br>
-	<div>Fellows:</div>
+	<div><u>Fellows</u></div>
 	<ul>
 	    <% _.each(fellows, function( fellow ){ %>
 	        <li>
