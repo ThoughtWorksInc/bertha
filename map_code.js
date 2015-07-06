@@ -10,7 +10,8 @@ window.onload = function() {
 	for (var i = 0; i < testData.length; i ++) {
 	  var datum = testData[i];
 	  var loc = new L.LatLng(datum.latitude, datum.longitude);
-	  var marker = new L.Marker(loc, {title: datum.organization});
+	  var brownIcon = L.Icon.Default.extend({options: { iconUrl: 'bertha_marker.png' }});
+	  var marker = new L.Marker(loc, {title: datum.organization, icon: new brownIcon()});
 	  marker.popupData = datum;
 	  var popupHtml = popupTemplate({
 	  	organization: marker.popupData.organization,

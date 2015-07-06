@@ -7,7 +7,7 @@
 <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
 
-<div id="map" style="height: 720px; width: 1080px;"></div>
+<link rel="stylesheet" href="bertha_site.css" />
 <script src="map_code.js"></script>
 
 <script type="text/template" class="popup-template">
@@ -26,7 +26,7 @@
 	    <% _.each(fellows, function( fellow ){ %>
 	    	<li style="display: inline-block; vertical-align: top; width: 45%; margin-right: 1%; margin-left: 1%; margin-bottom: 1%; margin-top: 1%">
 	    		<div style="vertical-align: top">
-	    			<img src='http://static1.squarespace.com/static/5395f905e4b052b96310e7d9/5548f96ce4b007190fd07456/55490af2e4b073a4cd90a677/1430850369394/' style='width:100%'>
+	    			<img src='https://static1.squarespace.com/static/5395f905e4b052b96310e7d9/55943118e4b0c9c17ebfa124/55943137e4b012c9a35fb093/1436195986300/rose.jpg?format=750w&storage=local' style='width:100%'>
     			</div>
 	            <div style="vertical-align: bottom"> <%- fellow %> </div>
 	        </li>
@@ -34,3 +34,7 @@
 	</ul>
 
 </script>
+
+
+<!-- Paste this line into code block for map -->
+<div id="map" style="height: 720px;"></div>
