@@ -14,10 +14,12 @@
   height: 100% !important;
   overflow: auto;
   left: auto !important;
+  padding: 0px !important;
 }
 .sqs-system-gallery .slide-meta .title {
   padding: 5% 0 0 5% !important;
   font-size: 36px !important;
+  line-height: 1em;
 }
 
 .sqs-system-gallery .slide-meta .description {
@@ -29,20 +31,20 @@ pointer-events: none !important;
 }
 
 
-span.be-just {
+span.alt-color {
   color: LightGray
 }
 
 .marker-cluster-small {
-	background-color: #7B5858 !important;
+  background-color: #7B5858 !important;
 }
 
 .marker-cluster-small div {
-	background-color: #421010 !important;
+  background-color: #421010 !important;
 }
 
 .marker-cluster-small div span {
-	color: white;
+  color: white;
 }
 
 ::-webkit-scrollbar {
