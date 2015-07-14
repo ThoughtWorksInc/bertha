@@ -18,18 +18,18 @@ video.bannerVideo {
 }
 </style>
 <script type="text/javascript">
-	$(window).scroll(function() {
+  $(window).scroll(function() {
         $('.bannerVideo').css({
-          'top': ($(this).scrollTop()) - ($(this).scrollTop() 				/ 3) + "px"
+          'top': ($(this).scrollTop()) - ($(this).scrollTop()         / 3) + "px"
         });
       });
   
-      $(window).bind("load", function() {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        } else {
-          var banner = $('#content-wrapper #parallax-images .image-container:nth-child(1) img').first();
-          var videoUrl = "https://berthabranding.squarespace.com/s/activism_banner_video.mp4";
-          $('<video class="bannerVideo" autoplay="" loop="" preload><source src="' + videoUrl + '" type="video/mp4"></video>').insertAfter(banner);
-        }
-      });
+  $(window).bind("load", function() {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    } else {
+      var banner = $('#content-wrapper #parallax-images .image-container:nth-child(1) img').first();
+      var videoUrl = "https://berthabranding.squarespace.com/s/bertha_activism_banner.mp4";
+      $('<video class="bannerVideo" autoplay="" loop="" preload><source src="' + videoUrl + '" type="video/mp4"></video>').insertAfter(banner);
+    }
+  });
   </script>

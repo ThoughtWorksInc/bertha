@@ -6,7 +6,9 @@ window.onload = function() {
 	
 	var popupTemplate = _.template($( "script.popup-template" ).html());
 
-	var markers = L.markerClusterGroup();
+	var markers = L.markerClusterGroup({
+		maxClusterRadius:40
+	});
 
 	for (var i = 0; i < mapData.length; i ++) {
 	  var datum = mapData[i];
