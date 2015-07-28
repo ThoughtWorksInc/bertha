@@ -1,0 +1,73 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
+<!-- Use map_code.js for local dev, link to squarespace code for javascript changes. -->
+<!-- <script src="map_code.js"></script> -->
+<script src="/s/map_code.js"></script>
+
+
+<script type="text/template" class="map-data-validation-template">
+    <h2>Map Data Validation</h2>
+    <div>
+        <h3>Summary Data</h3>
+        <ul>
+            <li>Total Fellows: <%= fellowTotal %> </li>
+        </ul>
+    </div>
+    <div>
+        <h3>Errors and Warnings</h3>
+        <p>The following organizations have no fellows tagged to them. Is this intentional? </p>
+        <table>
+            <tr>
+                <th>Organization Title</th>
+                <th>Organization Tag</th>
+            </tr>
+            <% _.each(orgsWithoutFellows, function( org ){ %>
+                <tr>
+                    <td> <%= org.title %> </td>
+                    <td> <%= org.tags[0] %> </td>
+                </tr> 
+            <% }); %>
+        </table>
+        <br>
+        <p>The following fellow tags have not been matched to any organization. Either they or the organization is tagged incorrectly.
+        <table>
+            <tr>
+                <th>Fellow Tag/Category</th>
+                <th>Fellows</th>
+            </tr>
+            <% _.each(unmatchedFellowTags, function( tag ){ %>
+                <tr>
+                    <td> <%= tag %> </td>
+                    <td> <% _.map(tag, function( fellow ){ return fellow.title; }).join(", ") %> </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var orgDataUrl = "http://berthabranding.squarespace.com/partner-organizations?format=json";
+    var fellowDataUrl = "http://berthabranding.squarespace.com/fellow-gallery?format=json";
+
+    var validationTemplate = _.template($( "script.map-data-validation-template" ).html());
+
+    $.getJSON(orgDataUrl, function(orgJson) {
+        var orgData = orgJson.items;
+        $.getJSON(fellowDataUrl, function(fellowJson) {
+            var fellowData = fellowJson.items;
+            var validationData = buildMapHierarchy(orgData, fellowData)
+
+            var validationHTML = validationTemplate({
+                fellowTotal: validationData.summary.fellowTotal,
+                unmatchedFellowTags: validationData.unmatchedFellowTags,
+                orgsWithoutFellows: validationData.orgsWithoutFellows
+            });
+            
+            $('#mapValidation').append(validationHTML);
+        });
+    });
+</script>
+
+<div id="mapValidation"></div>
