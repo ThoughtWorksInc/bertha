@@ -57,3 +57,16 @@ span.alt-color {
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
+
+video.bannerVideo {
+  display: block;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+  -ms-transform: translate(0,-100%);
+  -webkit-transform: translate(0,-100%);
+  -moz-transform: translate(0,-100%);
+  transform: translate(0,-100%);
+  overflow: hidden;
+  z-index: 100;
+}
