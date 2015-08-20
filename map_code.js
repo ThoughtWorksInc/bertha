@@ -62,6 +62,7 @@ var buildMapHierarchy = function(orgData, fellowData) {
 
     var hierarchy = []
     var orgsWithoutFellows = [];
+    var orgsWithoutSourceUrls = [];
 
     for (var i = 0; i < orgData.length; i++) {
         var org = orgData[i];
@@ -85,6 +86,10 @@ var buildMapHierarchy = function(orgData, fellowData) {
         }
         else {
             delete fellows[org.tags[0]];
+        }
+
+        if (org.sourceUrl == undefined || org.sourceUrl == "") {
+            orgsWithoutSourceUrls.push(org)
         }
 
         var popupData = {
@@ -111,6 +116,7 @@ var buildMapHierarchy = function(orgData, fellowData) {
         summary: summaryData,
         orgsWithoutFellows: orgsWithoutFellows,
         unmatchedFellowTags: fellows,
+        orgsWithoutSourceUrls: orgsWithoutSourceUrls
     }
 
 };

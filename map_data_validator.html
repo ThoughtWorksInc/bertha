@@ -17,6 +17,7 @@
     </div>
     <div>
         <h3>Errors and Warnings</h3>
+        <% if (orgsWithoutFellows.length > 0) { %>
         <p>The following organizations have no fellows tagged to them. Is this intentional? </p>
         <table>
             <tr>
@@ -30,7 +31,28 @@
                 </tr> 
             <% }); %>
         </table>
+        <% } %>
+        
         <br>
+
+        <% if (orgsWithoutSourceUrls.length > 0) { %>
+        <p>The following organizations have no source urls. Please add the url for the following organizations: </p>
+        <table>
+            <tr>
+                <th>Organization Title</th>
+                <th>Organization Tag</th>
+            </tr>
+            <% _.each(orgsWithoutSourceUrls, function( org ){ %>
+                <tr>
+                    <td> <%= org.title %> </td>
+                    <td> <%= org.tags[0] %> </td>
+                </tr> 
+            <% }); %>
+        </table>
+        <% } %>
+
+        <br>
+        <% if (unmatchedFellowTags.length > 0) { %>
         <p>The following fellow tags have not been matched to any organization. Either they or the organization is tagged incorrectly.
         <table>
             <tr>
@@ -44,6 +66,7 @@
                 </tr>
             <% }); %>
         </table>
+        <% }%>
     </div>
 </script>
 
@@ -62,7 +85,8 @@
             var validationHTML = validationTemplate({
                 fellowTotal: validationData.summary.fellowTotal,
                 unmatchedFellowTags: validationData.unmatchedFellowTags,
-                orgsWithoutFellows: validationData.orgsWithoutFellows
+                orgsWithoutFellows: validationData.orgsWithoutFellows,
+                orgsWithoutSourceUrls: validationData.orgsWithoutSourceUrls
             });
             
             $('#mapValidation').append(validationHTML);
