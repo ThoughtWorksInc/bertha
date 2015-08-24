@@ -52,17 +52,17 @@
         <% } %>
 
         <br>
-        <% if (unmatchedFellowTags.length > 0) { %>
+        <% if (unmatchedFellowTags.exists()) { %>
         <p>The following fellow tags have not been matched to any organization. Either they or the organization is tagged incorrectly.
         <table>
             <tr>
                 <th>Fellow Tag/Category</th>
                 <th>Fellows</th>
             </tr>
-            <% _.each(unmatchedFellowTags, function( tag ){ %>
+                <% _.each(Object.getPrototypeOf(unmatchedFellowTags), function(tag, tagName) { %>
                 <tr>
-                    <td> <%= tag %> </td>
-                    <td> <% _.map(tag, function( fellow ){ return fellow.title; }).join(", ") %> </td>
+                    <td> <%= tagName %> </td>
+                    <td> <%= _.map(tag, function( fellow ){ return fellow.name; }).join(", ") %> </td>
                 </tr>
             <% }); %>
         </table>
@@ -71,20 +71,31 @@
 </script>
 
 <script type="text/javascript">
+
     var orgDataUrl = "http://berthabranding.squarespace.com/partner-organizations?format=json";
     var fellowDataUrl = "http://berthabranding.squarespace.com/fellow-gallery?format=json";
 
     var validationTemplate = _.template($( "script.map-data-validation-template" ).html());
+
 
     $.getJSON(orgDataUrl, function(orgJson) {
         var orgData = orgJson.items;
         $.getJSON(fellowDataUrl, function(fellowJson) {
             var fellowData = fellowJson.items;
             var validationData = buildMapHierarchy(orgData, fellowData)
+            var unmatchedFellowTags = Object.create(validationData.unmatchedFellowTags);
+            unmatchedFellowTags.exists = function() {
+                var prototype = Object.getPrototypeOf(this)
+                for(key in prototype) {
+                
+                    if(prototype.hasOwnProperty(key)) { return true;}
+                }
+                return false;
+            }
 
             var validationHTML = validationTemplate({
                 fellowTotal: validationData.summary.fellowTotal,
-                unmatchedFellowTags: validationData.unmatchedFellowTags,
+                unmatchedFellowTags: unmatchedFellowTags,
                 orgsWithoutFellows: validationData.orgsWithoutFellows,
                 orgsWithoutSourceUrls: validationData.orgsWithoutSourceUrls
             });
@@ -93,5 +104,3 @@
         });
     });
 </script>
-
-<div id="mapValidation"></div>
