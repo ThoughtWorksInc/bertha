@@ -45,7 +45,12 @@ var buildMapHierarchy = function(orgData, fellowData) {
         }
 
         var orgLocString = null;
+
         if ("tags" in fellow && fellow.tags.length > 0) {
+            console.log("I have a tag:")
+            console.log(fellow.title)
+            console.log("my tags")
+            console.log(fellow.tags)
             orgLocString = fellow.tags[0];
         }
         else {
