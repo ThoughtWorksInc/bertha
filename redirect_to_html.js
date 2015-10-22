@@ -1,7 +1,7 @@
-if(userLoggedInToSquarespace()) {
-  window.location = "whatever... " //just do a string replace on window.location to replace https with http
+function userNotLoggedInToSquarespace() {
+  return window.top == window.self;
 }
 
-function userLoggedInToSquarespace() {
-  return window.top != window.self;
+function accessingSiteWithHTTPS() {
+	return window.location.protocol == "https:";
 }
