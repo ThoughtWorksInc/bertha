@@ -70,3 +70,8 @@ video.bannerVideo {
   overflow: hidden;
   z-index: 100;
 }
+
+#map-not-loaded-msg {
+  position: fixed;
+  background-color: red;
+}
