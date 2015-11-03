@@ -42,11 +42,10 @@
 	<div><strong>Fellows</strong></div>
 	<ul style="max-height: 400px; overflow-x: scroll; overflow-y:hidden; width: 100%; padding: 0; white-space: nowrap;">
 	    <% _.each(fellows, function( fellow ){ %>
-	    	<li style="display: inline-block; vertical-align: bottom; width: 45%; margin-right: 1%; margin-left: 1%; margin-bottom: 1%; margin-top: 1%">
-	    		<div style="vertical-align: top">
-	    			<img src=<%- fellow.picture %> style='width:100%'>
+	    	<li style="display: inline-block; vertical-align: bottom; width: 100px; margin-right: 1%; margin-left: 1%; margin-bottom: 1%; margin-top: 1%">
+	    		<div style="vertical-align: top; background-image: url('<%- fellow.picture %>'); width: 100px; height: 100px; background-size: cover; background-position: center center; border: 1px solid #ccc;">
     			</div>
-	            <div style="vertical-align: bottom"> <%- fellow.name %> </div>
+	            <div style="vertical-align: top; white-space: normal; height: 32px;"> <%- fellow.name %> </div>
 	        </li>
 	    <% }); %>
 	</ul>
