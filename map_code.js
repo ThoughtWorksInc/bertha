@@ -4,8 +4,11 @@ var markerIconUrl = "https://static1.squarespace.com/static/5395f905e4b052b96310
 
 var createMap = function() {
     var map = new L.Map('map', {center: new L.LatLng(35.00, 0.00), zoom: 2, minZoom: 2, maxZoom: 8, scrollWheelZoom: false});
+
     map.once('focus', function() { map.scrollWheelZoom.enable(); });
-    var layer = new L.StamenTileLayer('watercolor');
+    var layer = new L.StamenTileLayer('watercolor',{    maxBounds: [
+        [-85.0, -180.0],
+        [85.0, 180.0]]});
     map.addLayer(layer);
     
     var popupTemplate = _.template($( "script.popup-template" ).html());

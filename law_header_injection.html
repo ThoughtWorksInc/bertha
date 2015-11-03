@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<br>
-	<div><strong>Fellows</strong></div>
+	<div><% if(fellows != undefined) { %> <strong>Fellows</strong><% } %></div>
 	<ul style="max-height: 400px; overflow-x: scroll; overflow-y:hidden; width: 100%; padding: 0; white-space: nowrap;">
 	    <% _.each(fellows, function( fellow ){ %>
 	    	<li style="display: inline-block; vertical-align: bottom; width: 100px; margin-right: 1%; margin-left: 1%; margin-bottom: 1%; margin-top: 1%">
