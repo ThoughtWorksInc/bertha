@@ -82,3 +82,7 @@ video.bannerVideo {
   z-index: 100;
 
 }
+
+.video-caption p {
+  font-size: 12px;
+}
